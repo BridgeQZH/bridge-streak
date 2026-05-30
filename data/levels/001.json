@@ -1,0 +1,57 @@
+{
+  "id": "001",
+  "title": {
+    "zh": "飞黑桃 K",
+    "en": "Finesse the King"
+  },
+  "prompt": {
+    "zh": "你需要尽可能赢两墩黑桃。南手有 S3 S2，明手有 SA SQ，黑桃 K 还没有出过。请先从手里出小黑桃，再从明手出 SQ 飞 K。",
+    "en": "You need two spade tricks if possible. South holds S3 S2. Dummy holds SA SQ. The SK has not appeared. Lead low from hand, then play the SQ from dummy to finesse the king."
+  },
+  "hands": {
+    "N": ["SA", "SQ"],
+    "S": ["S3", "S2"]
+  },
+  "solution_steps": [
+    {
+      "seat": "S",
+      "cards": ["S2", "S3"],
+      "hint": {
+        "zh": "先从南手出一张小黑桃。",
+        "en": "Lead a low spade from South."
+      },
+      "correct_message": {
+        "zh": "很好，你先从手里出小牌，向明手的大牌方向打。",
+        "en": "Good. You led low toward dummy."
+      },
+      "wrong_message": {
+        "zh": "第一步要从南手出小黑桃，不要先动明手的大牌。",
+        "en": "Start by leading a low spade from South, not an honor from dummy."
+      }
+    },
+    {
+      "seat": "N",
+      "cards": ["SQ"],
+      "hint": {
+        "zh": "现在从明手出 SQ，飞还没有出现的 K。",
+        "en": "Now choose dummy's SQ to finesse the missing king."
+      },
+      "correct_message": {
+        "zh": "很好，Q 就是飞牌的关键。",
+        "en": "Good. The queen is the finesse."
+      },
+      "wrong_message": {
+        "zh": "如果直接出 A，就放弃了飞牌机会。这里要出 Q。",
+        "en": "Playing the ace gives up the finesse. Try the queen."
+      }
+    }
+  ],
+  "success_message": {
+    "zh": "成功：小牌到 Q 完成飞牌，A 还保留着，可以再赢一墩黑桃。",
+    "en": "Success: low to the queen wins the finesse line and keeps the ace for the second spade trick."
+  },
+  "explanation": {
+    "zh": "A-Q 对着小牌，而 K 还没有出现时，正确路线是先从小牌方向引出，再用 Q 飞 K。如果 K 在有利位置，Q 赢下这一墩，A 还能再拿一墩。",
+    "en": "With A-Q opposite small cards and the king still unseen, lead low toward dummy and play the queen. If the king is onside, the queen wins; the ace remains to take another trick."
+  }
+}

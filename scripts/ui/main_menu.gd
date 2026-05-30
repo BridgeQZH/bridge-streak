@@ -6,6 +6,9 @@ func _ready() -> void:
 
 
 func _build_ui() -> void:
+	for child in get_children():
+		child.queue_free()
+
 	var background := ColorRect.new()
 	background.color = Color(0.08, 0.23, 0.18)
 	background.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -31,22 +34,52 @@ func _build_ui() -> void:
 	layout.add_child(title)
 
 	var subtitle := Label.new()
-	subtitle.text = "桥牌闯关训练"
+	subtitle.text = GameState.t("subtitle")
 	subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	subtitle.add_theme_font_size_override("font_size", 24)
 	layout.add_child(subtitle)
 
+	var language_label := Label.new()
+	language_label.text = GameState.t("choose_language")
+	language_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	language_label.add_theme_font_size_override("font_size", 18)
+	layout.add_child(language_label)
+
+	var language_row := HBoxContainer.new()
+	language_row.alignment = BoxContainer.ALIGNMENT_CENTER
+	language_row.add_theme_constant_override("separation", 10)
+	layout.add_child(language_row)
+
+	var zh_button := Button.new()
+	zh_button.text = "中文"
+	zh_button.custom_minimum_size = Vector2(104, 42)
+	zh_button.disabled = GameState.language == GameState.LANGUAGE_ZH
+	zh_button.pressed.connect(_on_language_pressed.bind(GameState.LANGUAGE_ZH))
+	language_row.add_child(zh_button)
+
+	var en_button := Button.new()
+	en_button.text = "English"
+	en_button.custom_minimum_size = Vector2(104, 42)
+	en_button.disabled = GameState.language == GameState.LANGUAGE_EN
+	en_button.pressed.connect(_on_language_pressed.bind(GameState.LANGUAGE_EN))
+	language_row.add_child(en_button)
+
 	var start_button := Button.new()
-	start_button.text = "开始闯关"
+	start_button.text = GameState.t("start")
 	start_button.custom_minimum_size = Vector2(220, 54)
 	start_button.pressed.connect(_on_start_pressed)
 	layout.add_child(start_button)
 
 	var quit_button := Button.new()
-	quit_button.text = "退出"
+	quit_button.text = GameState.t("quit")
 	quit_button.custom_minimum_size = Vector2(220, 46)
 	quit_button.pressed.connect(_on_quit_pressed)
 	layout.add_child(quit_button)
+
+
+func _on_language_pressed(language: String) -> void:
+	GameState.set_language(language)
+	_build_ui()
 
 
 func _on_start_pressed() -> void:

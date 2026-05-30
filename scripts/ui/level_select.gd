@@ -1,7 +1,7 @@
 extends Control
 
 
-const LEVEL_COUNT := 6
+const LEVEL_COUNT := 1
 
 
 func _ready() -> void:
@@ -31,13 +31,13 @@ func _build_ui() -> void:
 	layout.add_child(top_bar)
 
 	var back_button := Button.new()
-	back_button.text = "返回"
+	back_button.text = GameState.t("back")
 	back_button.custom_minimum_size = Vector2(110, 42)
 	back_button.pressed.connect(_on_back_pressed)
 	top_bar.add_child(back_button)
 
 	var title := Label.new()
-	title.text = "选择关卡"
+	title.text = GameState.t("select_level")
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_font_size_override("font_size", 36)
@@ -56,7 +56,7 @@ func _build_ui() -> void:
 
 	for level_number in range(1, LEVEL_COUNT + 1):
 		var button := Button.new()
-		button.text = "第 %d 关\n首攻训练" % level_number
+		button.text = GameState.t("level_card") % level_number
 		button.custom_minimum_size = Vector2(190, 120)
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.size_flags_vertical = Control.SIZE_EXPAND_FILL
