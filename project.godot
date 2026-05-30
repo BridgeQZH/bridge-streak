@@ -10,9 +10,14 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="Bridge Streak"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameState="*res://scripts/autoload/game_state.gd"
 
 [physics]
 
